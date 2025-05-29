@@ -78,7 +78,6 @@ async function getAllTextNodesWithContainerHTML() {
 
 // Execute logic in an async IIFE
 (async () => {
-  const htmlContent = document.documentElement.outerHTML;
 
   chrome.storage.local.get(['mainToggleEnabled'], async (result) => {
     const enabled = result.mainToggleEnabled;
@@ -87,16 +86,7 @@ async function getAllTextNodesWithContainerHTML() {
       content: enabled,
     });
 
+    if (enabled) await getAllTextNodesWithContainerHTML();
 
-    if (enabled) {
-      const textNodes = await getAllTextNodesWithContainerHTML();
-
-      chrome.runtime.sendMessage({
-        type: "page_html",
-        url: window.location.href,
-        html: htmlContent,
-        texts: textNodes
-      });
-    }
   });
 })();

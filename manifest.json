@@ -4,8 +4,6 @@
     "version": "1.0",
     "description": "Extract the HTML of each visited page and hide the offensive content.",
     "permissions": [
-        "scripting",
-        "tabs",
         "storage"
     ],
     "host_permissions": [
